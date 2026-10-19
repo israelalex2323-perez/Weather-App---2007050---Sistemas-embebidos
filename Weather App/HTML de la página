@@ -1,1 +1,453 @@
+<!doctype html>
+<html lang="en">
 
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- PWA -->
+  <link rel="manifest" href="./manifest.json">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+  <style>
+
+
+  body {
+        background-image: url("./img/fondoapp.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    .img {
+      height: 10px;
+      width: 10px;
+      margin-top: 32px;
+      margin-left: 32px;
+      fill: white;
+    }
+
+    svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    svg:hover {
+      fill: red;
+    }
+
+    .slider {
+          height: auto;
+    margin-bottom: 20px;
+
+    }
+
+.titulo-estacion {
+    margin-top: 40px;
+    margin-bottom: 30px;
+
+    /* CAMBIO: hacemos la caja un poco más grande */
+    padding: 20px 35px;
+
+    background-color: rgba(0, 0, 0, 0.60);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CAMBIO: texto más grande */
+.titulo-estacion h4 {
+    margin: 0;
+    color: white;
+    font-size: 2rem;
+}
+
+/* CAMBIO: icono más grande */
+.icono-titulo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-right: 18px;
+}
+
+
+    .temperatura {
+      height: 200px;
+      margin-bottom: 80px;
+      width: 350px;
+      position: relative;
+      background-color: pink;
+      border-radius: 20px;
+      padding: 10px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url("./img/fotemp.JPG");
+      box-shadow: 0px 7px 30px 2px rgba(0, 0, 0, 0.18);
+      vertical-align: middle;
+
+    }
+
+    .humedad {
+      height: 200px;
+      margin-bottom: 80px;
+      width: 350px;
+      position: relative;
+      background-color: pink;
+      border-radius: 20px;
+      padding: 10px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url("./img/ume.JPG");
+      box-shadow: 0px 7px 30px 2px rgba(0, 0, 0, 0.18);
+      vertical-align: middle;
+    }
+
+    .iluminacion {
+      height: 200px;
+      margin-bottom: 80px;
+      width: 350px;
+      position: relative;
+      background-color: pink;
+      border-radius: 20px;
+      padding: 10px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url("./img/Iluminacion.png");
+      box-shadow: 0px 7px 30px 2px rgba(0, 0, 0, 0.18);
+      vertical-align: middle;
+    }
+
+    .altitud {
+      height: 200px;
+      margin-bottom: 80px;
+      width: 350px;
+      position: relative;
+      background-color: pink;
+      border-radius: 20px;
+      padding: 10px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url("./img/fondoalt.jpg");
+      box-shadow: 0px 7px 30px 2px rgba(0, 0, 0, 0.18);
+      vertical-align: middle;
+    }
+
+    .presion {
+      height: 200px;
+      margin-bottom: 80px;
+      width: 350px;
+      position: relative;
+      background-color: pink;
+      border-radius: 20px;
+      padding: 10px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url("./img/fobri.JPG");
+      box-shadow: 0px 7px 30px 2px rgba(0, 0, 0, 0.18);
+      vertical-align: middle;
+    }
+
+    .indiceuv {
+      height: 100px;
+      margin-bottom: 80px;
+      width: 350px;
+      position: relative;
+      background-color: pink;
+      border-radius: 20px;
+      padding: 10px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-image: url("./img/UV.png");
+      box-shadow: 0px 7px 30px 2px rgba(0, 0, 0, 0.18);
+      vertical-align: middle;
+    }
+
+    .boton-instalar {
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    border: 2px solid white;
+    border-radius: 30px;
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+}
+
+.boton-instalar:hover {
+    transform: scale(1.05);
+    background: rgba(33, 150, 243, 0.9);
+}
+
+.temperatura,
+    .presion,
+    .altitud,
+    .humedad {
+        width: 400px;
+        max-width: 400px;
+
+        margin-left: 20px;
+        margin-right: 20px;
+        margin-bottom: 40px;
+
+        box-sizing: border-box;
+    }
+
+    .subCategoria {
+        width: 100%;
+        text-align: center;
+    }
+
+    @media (max-width: 767px) {
+
+        .temperatura,
+        .presion,
+        .altitud,
+        .humedad {
+            width: 350px;
+            max-width: calc(100% - 30px);
+
+            margin-left: auto;
+            margin-right: auto;
+
+            margin-bottom: 40px;
+        }
+
+    }
+
+
+
+
+
+    /* Customize the label (the container) */
+    .container {
+      display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 22px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* Hide the browser's default radio button */
+    .container input ~.form-check-input{
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    /* Create a custom radio button */
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: #eee;
+      border-radius: 50%;
+    }
+
+    .form-check-label {
+      padding-left: 20px;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .container:hover input~.checkmark {
+      background-color: #ccc;
+    }
+
+
+    /* When the radio button is checked, add a blue background */
+    .container input:checked~.checkmark {
+      background-color: #2196F3;
+    }
+
+    .container input:checked~#checkmark1 {
+      background-color: #4CBB17;
+    }
+
+    .container input:checked~#checkmark2 {
+      background-color: #FCE205;
+    }
+
+    .container input:checked~#checkmark3 {
+      background-color: #E60000;
+    }
+
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+
+    /* Show the indicator (dot/circle) when checked */
+    .container input:checked~.checkmark:after {
+      display: block;
+    }
+
+    /* Style the indicator (dot/circle) */
+    .container .checkmark:after {
+      top: 9px;
+      left: 9px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+    }
+
+    .semaforo {
+      height: 80px;
+      background: #E6E6E6;
+    }
+
+    .servo {
+      height: 80px;
+      background: #EBF5FB;
+    }
+  </style>
+  <title>weatherweb</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <div class="container">
+    <div class="row justify-content-around">
+     <div class="col-12 col-md-10 col-lg-10 slider">
+<div class="titulo-estacion">
+
+    <img src="./icons/logo1.png" class="icono-titulo">
+
+    <h4>Estación Meteorológica</h4>
+
+</div>
+
+<div class="text-center mb-4">
+  <button id="botonInstalar" class="boton-instalar" style="display: none;">
+    📲 Instalar aplicación
+  </button>
+</div>
+
+
+    </div>
+
+
+    <div class="row justify-content-around">
+      <div class="col-12 col-md-6 temperatura d-flex align-items-center justify-content-center">
+        <div class="subCategoria ">
+          <h3 class="subtitulo text-white">Temperatura</h3>
+          <h3 id="TemperaturaId" class="text-white"></h3>
+        </div>
+      </div>
+
+<div class="col-12 col-md-6 presion d-flex align-items-center justify-content-center">
+        <div class="subCategoria ">
+          <h3 class="subtitulo text-white">Presión</h3>
+          <h3 id="PresionId" class="text-white"></h3>
+        </div>
+      </div>
+
+<div class="col-12 col-md-6 altitud d-flex align-items-center justify-content-center">
+             <div class="subCategoria">
+             <h3 class="subtitulo text-white">Altitud</h3>
+             <h3 id="AltitudId" class="text-white"></h3>
+             </div>
+                 </div>
+
+<div class="col-12 col-md-6 humedad d-flex align-items-center justify-content-center">             <div class="subCategoria">
+             <h3 class="subtitulo text-white">Humedad</h3>
+             <h3 id="HumedadId" class="text-white"></h3>
+             </div>
+                 </div>     
+
+
+
+
+    </div>
+
+  </div>
+  </div>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <script src="js/HiFirebase.js"></script>
+
+  <!-- PWA Service Worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js")
+          .then(() => {
+            console.log("Service Worker registrado correctamente");
+          })
+          .catch(error => {
+            console.error("Error al registrar Service Worker:", error);
+          });
+      });
+    }
+  </script>
+
+  <!-- Botón para instalar la aplicación -->
+  <script>
+    let eventoInstalacion;
+
+    window.addEventListener("beforeinstallprompt", (evento) => {
+      evento.preventDefault();
+      eventoInstalacion = evento;
+
+      const boton = document.getElementById("botonInstalar");
+      boton.style.display = "inline-block";
+    });
+
+    document.getElementById("botonInstalar").addEventListener("click", async () => {
+      if (!eventoInstalacion) {
+        return;
+      }
+
+      eventoInstalacion.prompt();
+
+      const resultado = await eventoInstalacion.userChoice;
+
+      if (resultado.outcome === "accepted") {
+        console.log("Aplicación instalada");
+      }
+
+      eventoInstalacion = null;
+      document.getElementById("botonInstalar").style.display = "none";
+    });
+  </script>
+
+
+
+</body>
+
+</html>
