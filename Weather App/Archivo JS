@@ -1,1 +1,64 @@
+const firebaseConfig = {
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+var WeatherApp = document.getElementById('WeatherApp')
+var dbRef = firebase.database()
+
+  
+var Temperatura=0;
+var Presion=0;
+var grados =1;
+var Altitud=0;
+var Humedad=0;
+//let dbTemp = firebase.database().ref("Monitor/Temperatura/");
+let dbTemp = dbRef.ref("Weather/Temperatura/");
+
+dbTemp.on('value', function(snapshot) {
+  console.log("la temperatura es", snapshot.val());
+   Temperatura=snapshot.val();
+ document.getElementById("TemperaturaId").innerHTML  = Temperatura.toFixed(2) + " " + "°C";
+
+});
+
+
+//let dbPres = firebase.database().ref("Monitor/Presion/");
+let dbPres = dbRef.ref("Weather/Presion/");
+
+dbPres.on('value', function(snapshot) {
+  console.log("la presion es", snapshot.val());
+   Presion=snapshot.val();
+ document.getElementById("PresionId").innerHTML  = Presion.toFixed(0) + " " + "mmHG";
+
+});
+
+let dbAlt = dbRef.ref("Weather/Altitud/");
+
+dbAlt.on('value', function(snapshot) {
+  console.log("la altitud es", snapshot.val());
+  Altitud = snapshot.val();
+
+  document.getElementById("AltitudId").innerHTML =
+    Altitud.toFixed(2) + " m";
+});
+
+let dbHum = dbRef.ref("Weather/Humedad/");
+
+dbHum.on('value', function(snapshot) {
+  console.log("la humedad es", snapshot.val());
+  Humedad = snapshot.val();
+
+  document.getElementById("HumedadId").innerHTML =
+    Humedad.toFixed(2) + " %";
+});
+
 
